@@ -73,7 +73,8 @@ function draw() {
 	
 	push();
 	noStroke();
-	fill(0, 200);
+	fill(255, 200);
+	stroke(255, 200);
 	ellipse(55, 55, 30, 30);
 	//ellipse(width-40, height-40, 60, 60);
 	pop();
@@ -330,10 +331,10 @@ function written() {
 	textAlign(LEFT);
 	textSize(height / 70);
 		if(controlPress == true) {
-	text("B  A  C  T  E  R  I  U  M", width / 3.4, 0); // Title
-	text("Control: " + int(xControl - 143), width / 1.415, 0); // Control
-	text("Zoom: " + int(sine+8), width / 1.621, 0); // Zoom
-	text("Density: " + int(dia - 2), width / 1.915, 0); // Density
+	//text("B  A  C  T  E  R  I  U  M", width / 3.4, 0); // Title
+	text("Control: " + int(xControl - 143), width / 3, 0); // Control
+	text("Zoom: " + int(sine+8), width / 1.4, 0); // Zoom
+	text("Density: " + int(dia - 2), (width / 2) + 10, 0); // Density
 		}
 	
 		
@@ -379,17 +380,27 @@ push();
 		
 			strokeWeight(2);
 		stroke(255);
+		noFill();
 			line(50, 50, 60, 60)
 			line(50, 60, 60, 50);
+			noStroke();
+			ellipse(55, 55, 30, 30);
 		infoBox();
 	} else if (infoPress === false) {
 		strokeWeight(2);
 		stroke(255);
-		translate(0, 2);
-		line(55, 55, 60, 50);
-		line(50, 50, 55, 45);
-		line(55, 45, 60, 50);
-		line(55, 55, 55, 60);
+		noFill();
+		for(var ci = 1; ci < 30; ci+= 15) {
+		
+		ellipse(55, 55, ci, ci);
+		}
+		
+		//translate(0, 2);
+		
+		//line(55, 55, 60, 50);
+		//line(50, 50, 55, 45);
+		//line(55, 45, 60, 50);
+		//line(55, 55, 55, 60);
 
 	
 	
