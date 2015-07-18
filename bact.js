@@ -410,10 +410,11 @@ function infoBox() {
 	textAlign(CENTER);
 	// Information
 	push();
-	translate(width / 3.4, height / 3.3);
-	text("B A C T E R I U M  is a simple interactive visual design project, created by Gary Wilson. This is the first iteration, in which the user may manipulate the density and geometry  of a microorganism.", 0, -10, 220, 0);
-	//text("where the user may manipulate a geometrically-designed", 0, 15);
-	//text("microorganism, created by Gary Wilson. This is the first iteration.", 0, 30)
+	translate(width / 2, height / 3.3);
+	text("B A C T E R I U M  is a simple interactive visual design", 0, -10);
+	text("project, created by Gary Wilson. This is the first iteration, in", 0, 0);
+	text("which the user may manipulate the density and geometry", 0, 10)
+	text("of a microorganism.", 0, 20)
 	pop();
 
 	// Control
