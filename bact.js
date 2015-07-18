@@ -265,7 +265,7 @@ function controlBar() {
 	//Bar below text
 	push();
 	rectMode(CENTER);
-	translate(width / 2, height / 1.107);
+	translate(width / 2, height / 1.129);
 	fill(0, 180);
 	rect(0, 0, width / 1.9, 26, 5);
 	pop();
