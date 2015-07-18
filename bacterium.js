@@ -51,6 +51,7 @@ function draw() {
 	pop();
 	push();
 	fill(0);
+	noStroke();
 	ellipse(55, 55, 30, 30);
 
 	//ellipse(width-40, height-40, 60, 60);
@@ -373,13 +374,27 @@ function infoButton() {
 	noStroke();
 	fill(255, 200);
 
-
+push();
 	if (infoPress === true) {
-		text("X", 55, 60);
+		
+			strokeWeight(2);
+		stroke(255);
+			line(50, 50, 60, 60)
+			line(50, 60, 60, 50);
 		infoBox();
 	} else if (infoPress === false) {
-		text("?", 55, 60);
+		strokeWeight(2);
+		stroke(255);
+		translate(0, 2);
+		line(55, 55, 60, 50);
+		line(50, 50, 55, 45);
+		line(55, 45, 60, 50);
+		line(55, 55, 55, 60);
+
+	
+	
 	}
+	pop();
 
 
 
@@ -390,8 +405,10 @@ function infoButton() {
 function infoBox() {
 
 	//Box
+
 	rectMode(CENTER);
 	stroke(255, 100);
+		noStroke();
 	fill(0, 200);
 	ellipse(width / 2, height / 2, width/1.4, height /1.4);
 
