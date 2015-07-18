@@ -1,5 +1,5 @@
 //......B A C T E R I U M  O N L I N E......\\
-
+//Written, maintained, and owned by Gary Wilson, 2015.
 
 var bubbles = [];
 var bubblesNumber = 150;
@@ -55,6 +55,30 @@ function draw() {
 	written();
 	infoButton();
 	sineZoom();
+
+
+
+
+	if (keyIsPressed) {
+		if (infoPress === false) {
+			xMovement = 0.5;
+			if (key == 'e' || key == 'E') {
+				xControl += xMovement;
+
+			} else if (key == 'q' || key == 'Q') {
+				xControl -= xMovement;
+
+			}
+
+			if (key == 'w' || key == 'W') {
+				sine += increment;
+
+			} else if (key == 's' || key == 'S') {
+
+				sine -= increment;
+			}
+		}
+	}
 }
 
 
@@ -109,34 +133,10 @@ function keyReleased() {
 
 function keyPressed() {
 	if (infoPress === false) {
-		xMovement = 0.5;
 
-
-
-		if (keyCode == RIGHT_ARROW) {
-			xControl += xMovement;
-
-		} else if (keyCode == LEFT_ARROW) {
-			xControl -= xMovement;
-
-		}
-
-		if (keyCode == UP_ARROW) {
-			sine += increment;
-
-		} else if (keyCode == DOWN_ARROW) {
-
-			sine -= increment;
-		}
-
-		if (key == ' ') {
+		if (key == 'R' || key == 'r') {
 			isPlaying = !isPlaying;
 		}
-
-
-
-
-
 	}
 }
 
@@ -356,16 +356,16 @@ function infoBox() {
 	text("Increase Density", 20, 50);
 	text("D", -65, 70);
 	text("Decrease Density", 20, 70);
-	text("UP", -65, 90);
+	text("W", -65, 90);
 	text("Zoom In", 20, 90);
-	text("DOWN", -65, 110);
+	text("S", -65, 110);
 	text("Zoom Out", 20, 110);
-	text("LEFT", -65, 130);
+	text("Q", -65, 130);
 	text("Rotation Control Reverse", 20, 130);
-	text("RIGHT", -65, 150);
+	text("E", -65, 150);
 	text("Rotation Control Forward", 20, 150);
-	text("SPACE", -65, 170);
-	text("Autoplay Forward Rotation", 20, 170);
+	text("R", -65, 170);
+	text("Auto-Run Forward Rotation", 20, 170);
 
 	text("P", -65, 190);
 	textFont("Helvetica");
@@ -396,13 +396,13 @@ function Bubble() {
 	var diameterIn = random(1, 50)
 	var diameterOut = random(10, 500)
 	var diameter = random(diameterIn, diameterOut);
-	var ySecond = random(height*10, height*20);
+	var ySecond = random(height * 10, height * 20);
 
 	var sy = random(5);
 
 	this.display = function() {
-		
-		if(y < 0-(height*8+diameter)) {
+
+		if (y < 0 - (height * 8 + diameter)) {
 			y = ySecond;
 		}
 
@@ -415,12 +415,12 @@ function Bubble() {
 	this.movement = function() {
 		if (infoPress === false) {
 			y -= sy;
-	
+
 		}
-		
-	
+
+
 	}
-	
+
 
 
 }
