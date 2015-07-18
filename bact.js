@@ -375,10 +375,10 @@ function infoButton() {
 
 
 	if (infoPress === true) {
-		text("X", 56, 60);
+		text("X", 57, 60);
 		infoBox();
 	} else if (infoPress === false) {
-		text("?", 56, 60);
+		text("?", 57, 60);
 	}
 
 
