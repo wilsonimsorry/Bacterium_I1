@@ -1,8 +1,12 @@
 //......B A C T E R I U M  O N L I N E......\\
-//Written, maintained, and owned by Gary Wilson, 2015.
+/*
+This is the first iteration of Bacterium, written, maintained, and 
+owned by Gary Wilson.
+*/
+
 
 var bubbles = [];
-var bubblesNumber = 150;
+var bubblesNumber = 250;
 var amount;
 var teria;
 var sine = 10;
@@ -16,10 +20,11 @@ var isPlaying = false;
 function setup() {
 	var sizeY = 550;
 	var sizeX = sizeY + (3 * (sizeY / 4));
-	createCanvas(800, 450);
+	createCanvas(500, 500);
 
 	smooth();
-	background(200);
+	//background(200);
+
 
 	for (var iBubble = 0; iBubble < bubblesNumber; iBubble++) {
 		bubbles.push(new Bubble());
@@ -35,7 +40,21 @@ function setup() {
 
 function draw() {
 
-	background(0);
+	background(255);
+		push();
+		noStroke();
+		translate(width/2, height/2);
+	fill(0);
+
+	ellipse(0, 0, width, height);
+	
+	pop();
+	push();
+	fill(0);
+	ellipse(55, 55, 30, 30);
+
+	//ellipse(width-40, height-40, 60, 60);
+	pop();
 
 	push();
 	translate(width / 2, height / 2);
@@ -50,11 +69,26 @@ function draw() {
 	teria.movement();
 	teria.display();
 	pop();
+	
+	push();
+	noStroke();
+	fill(0, 200);
+	ellipse(55, 55, 30, 30);
+	//ellipse(width-40, height-40, 60, 60);
+	pop();
 
+
+
+
+
+	
 	controlBar();
 	written();
 	infoButton();
 	sineZoom();
+	
+
+	
 
 
 
@@ -85,7 +119,7 @@ function draw() {
 // MOUSE AND KEYCONTROL
 
 
-var xControl = 229;
+var xControl = 143;
 var sine = 100;
 var dia = 1;
 
@@ -95,7 +129,7 @@ function mouseControl() {
 
 	// Control Bar
 	if (infoPress === false) {
-		if (mouseY < height / 1.08 && mouseY > height / 1.15 && mouseX > width / 10 && mouseX < width / 1.1) {
+		if (mouseY < height / 1.12 && mouseY > height / 1.2 && mouseX > width / 3.5 && mouseX < width / 1.4) {
 			if (mouseIsPressed) {
 				xControl = mouseX;
 
@@ -112,18 +146,24 @@ function mouseControl() {
 
 // Control Bar
 function mouseClicked() {
-	if (mouseX > 20 && mouseX < 40 && mouseY > 20 && mouseY < 40) {
+	if (mouseX > 35 && mouseX < 73 && mouseY > 35 && mouseY < 72) {
 		infoPress = !infoPress;
 	}
+
 }
 
 //Key control
 
 function keyReleased() {
+	if (key == 'c' || key == 'C') {
+		controlPress = !controlPress;
+	}
 	if (key == 'p' || key == 'P') {
 		infoPress = !infoPress;
 
 	}
+	
+	
 
 	if (infoPress === true) {
 		isPlaying = false;
@@ -144,8 +184,11 @@ function keyPressed() {
 // Sine Control
 
 function sineZoom() {
+	if(sine < -7) {
+		sine = -7;
+	}
 	if (sine < 1) {
-		sine = 1;
+		
 		increment = 0.9;
 	}
 
@@ -207,21 +250,24 @@ function sineZoom() {
 
 //......C O N T R O L L E R......\\
 
+var controlPress = false;
+
 // Controls
 function controlBar() {
+	if(controlPress === true) {
 	noStroke();
 
 	//Bar below text
 	push();
 	rectMode(CENTER);
-	translate(width / 2, height / 1.085);
+	translate(width / 2, height / 1.107);
 	fill(0, 180);
 	rect(0, 0, width / 1.9, 26, 5);
 	pop();
 
 	// Control Bar
 	push();
-	translate(width / 2, (height / 2.5) + (height / 2))
+	translate(width / 2, (height / 2.5) + (height / 2.15))
 	noStroke();
 	fill(255, 100);
 	ellipse(0, 0, width / 2, 3);
@@ -231,10 +277,11 @@ function controlBar() {
 	// Bar Controller
 	push();
 	rectMode(CENTER);
-	translate(0, (height / 2.5) + (height / 2))
+	translate(0, (height / 2.5) + (height / 2.15))
 	fill(255, 200);
 	rect(xControl, 0, 5, 17, 9);
 	pop();
+	}
 
 
 	if (isPlaying === true) {
@@ -247,7 +294,8 @@ function controlBar() {
 
 	mouseControl();
 	xCont();
-}
+	}
+
 
 function xCont() {
 	if (xControl < width / 3.5) {
@@ -271,13 +319,26 @@ function written() {
 
 	//Control Bar Text
 	push();
-	translate(-25, height / 1.070);
+	fill(255);
+	translate(-25, height / 1.109);
 	textAlign(LEFT);
-	textSize(height / 60);
+	textSize(height / 70);
+		if(controlPress == true) {
 	text("B  A  C  T  E  R  I  U  M", width / 3.4, 0); // Title
-	text("Control: " + int(xControl - 229), width / 1.415, 0); // Control
-	text("Zoom: " + int(sine), width / 1.621, 0); // Zoom
+	text("Control: " + int(xControl - 143), width / 1.415, 0); // Control
+	text("Zoom: " + int(sine+8), width / 1.621, 0); // Zoom
 	text("Density: " + int(dia - 2), width / 1.915, 0); // Density
+		}
+	
+		
+	pop();
+	
+	push();
+	textSize(10);
+	textAlign(CENTER);
+	strokeWeight(1);
+	fill(255, 200);
+	//text(int(sine), width-40, height-35);
 	pop();
 
 
@@ -290,27 +351,29 @@ var infoPress = false;
 var alphaBegin = 200;
 var alphaIncre = 3;
 
+
 function infoButton() {
 
 
 	//Button
 	rectMode(CENTER);
 
+	strokeWeight(0);
 	stroke(255);
 	noFill();
 	rect(30, 30, 20, 20, 5);
 	//Button text
-	textSize(height / 50);
+	textSize(height / 35);
 	textAlign(CENTER);
 	noStroke();
-	fill(255, 220);
+	fill(255, 200);
 
 
 	if (infoPress === true) {
-		text("X", 30, 34);
+		text("X", 55, 61);
 		infoBox();
 	} else if (infoPress === false) {
-		text("?", 30, 34);
+		text("?", 55, 61);
 	}
 
 
@@ -325,7 +388,7 @@ function infoBox() {
 	rectMode(CENTER);
 	stroke(255, 100);
 	fill(0, 200);
-	rect(width / 2, height / 2.1, width / 2, height / 1.4);
+	ellipse(width / 2, height / 2, width/1.4, height /1.4);
 
 	// Text
 	noStroke();
@@ -334,23 +397,23 @@ function infoBox() {
 	// Welcome
 	textSize(height / 40);
 	textAlign(CENTER);
-	text("B  A  C  T  E  R  I  U  M", width / 2, height / 5);
+	text("B  A  C  T  E  R  I  U  M", width / 2, height / 4);
 
 
 
-	textSize(height / 50);
-	textAlign(LEFT);
+	textSize(height / 60);
+	textAlign(CENTER);
 	// Information
 	push();
-	translate(width / 3.2, height / 3.9);
-	text("B A C T E R I U M  is a simple interactive visual design project, created by Gary Wilson. This is the first iteration, in which the user may manipulate the density and geometry  of a microorganism.", 0, 0, 310, 100);
+	translate(width / 3.4, height / 3.3);
+	text("B A C T E R I U M  is a simple interactive visual design project, created by Gary Wilson. This is the first iteration, in which the user may manipulate the density and geometry  of a microorganism.", 0, -10, 220, 0);
 	//text("where the user may manipulate a geometrically-designed", 0, 15);
 	//text("microorganism, created by Gary Wilson. This is the first iteration.", 0, 30)
 	pop();
 
 	// Control
 	push();
-	translate((width / 2 - 15), (height / 3.4));
+	translate((width / 2 + 5), (height / 3-20));
 	textFont("Helvetica");
 	text("A", -65, 50);
 	text("Increase Density", 20, 50);
@@ -366,16 +429,20 @@ function infoBox() {
 	text("Rotation Control Forward", 20, 150);
 	text("R", -65, 170);
 	text("Auto-Run Forward Rotation", 20, 170);
+	
 
 	text("P", -65, 190);
 	textFont("Helvetica");
 	text("Pause", 20, 190);
+	text("C", -65, 210);
+	text("Control Bar Toggle", 20, 210);
 	pop();
 
 	textAlign(CENTER);
 	textSize(height / 60);
 	fill(255, alphaBegin);
-	text("P R E S S  P  T O  R E S U M E", width / 2, height / 1.25);
+	
+	text("P R E S S  P  T O  R E S U M E", width / 2, height / 1.29);
 
 	if (alphaBegin > 200 || alphaBegin < 50) {
 		alphaIncre *= -1;
@@ -390,19 +457,19 @@ function infoBox() {
 //......B U B B L E  C L A S S......\\
 
 function Bubble() {
-	var c = color(random(220, 255), random(20, 80));
-	var x = random(0 - (width * 5.5), width * 5.5);
-	var y = random(0 - (height * 5), height * 20);
+	var c = color((255), random(20, 80));
+	var x = random(0 - (width * 20), width * 20);
+	var y = random(0 - (height * 15), height * 22);
 	var diameterIn = random(1, 50)
 	var diameterOut = random(10, 500)
 	var diameter = random(diameterIn, diameterOut);
-	var ySecond = random(height * 10, height * 20);
+	var ySecond = random(height * 15, height * 22);
 
 	var sy = random(5);
 
 	this.display = function() {
 
-		if (y < 0 - (height * 8 + diameter)) {
+		if (y < 0 - (height * 22 + diameter)) {
 			y = ySecond;
 		}
 
