@@ -88,6 +88,11 @@ function draw() {
 	sineZoom();
 	
 
+
+	
+
+	
+
 	
 
 
@@ -370,10 +375,10 @@ function infoButton() {
 
 
 	if (infoPress === true) {
-		text("X", 55, 61);
+		text("X", 54.5, 60);
 		infoBox();
 	} else if (infoPress === false) {
-		text("?", 55, 61);
+		text("?", 54.5, 60);
 	}
 
 
